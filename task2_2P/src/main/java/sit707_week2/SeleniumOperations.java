@@ -1,7 +1,10 @@
 package sit707_week2;
 
 import org.openqa.selenium.By;
+
 import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,7 +32,7 @@ public class SeleniumOperations {
 	}
 	
 	
-	public static void officeworks_registration_page(String url) {
+	public static void officeworks_registration_page(String url) throws IOException {
 		// Step 1: Locate chrome driver folder in the local drive.
 		System.setProperty("webdriver.chrome.driver", "C:/Users/Deepika Dokuparti/Downloads/chromedriver-win64/chromedriver.exe");
 		
@@ -60,10 +63,32 @@ public class SeleniumOperations {
 		/*
 		 * Find following input fields and populate with values
 		 */
-		 WebElement usernameInput = driver.findElement(By.id("username"));
-		 WebElement passwordInput = driver.findElement(By.id("password"));
-		 usernameInput.sendKeys("url_Deepika");
-		 passwordInput.sendKeys("url_password");
+//		 WebElement usernameInput = driver.findElement(By.id("username"));
+//		 usernameInput.sendKeys("Deepika");
+		 
+		 WebElement lastname = driver.findElement(By.id("lastname"));
+		 System.out.println("Found element: " + lastname);
+		 lastname.sendKeys("Dokuparti");
+		 
+		 WebElement phoneNumber = driver.findElement(By.id("phoneNumber"));
+		 System.out.println("Found element: " + phoneNumber);
+		 phoneNumber.sendKeys("0430614846");
+		 
+		 WebElement email = driver.findElement(By.id("email"));
+		 System.out.println("Found element: " + email);
+		 email.sendKeys("deepikamains@gmail.com");	
+		 
+		 WebElement password = driver.findElement(By.id("password"));
+		 System.out.println("Found element: " + password);
+		 password.sendKeys("DeepikaD");	
+		 
+		 WebElement confirmPassword = driver.findElement(By.id("confirmPassword"));
+		 System.out.println("Found element: " + confirmPassword);
+		 confirmPassword.sendKeys("DeepikaD");	
+		 
+		 
+		 
+//		 passwordInput.sendKeys("url_password");
 		
 		
 		/*
@@ -77,11 +102,11 @@ public class SeleniumOperations {
 		 */
 		 TakesScreenshot screenshotDriver = (TakesScreenshot) driver;
          File screenshotFile = screenshotDriver.getScreenshotAs(OutputType.FILE);
-		 try {
-			 FileUtils.copyFile(screenshotFile, new File("screenshot.png"));
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
+         FileUtils.copyFile(screenshotFile, new File("task2_2P/Screenshot/Screenshot2.png"));
+         try {
+			 FileUtils.copyFile(screenshotFile, new File
+			 (".//Screenshot/Screenshot2.png"));
+			 } catch (IOException e) {}	
 		
 		
 		// Sleep a while

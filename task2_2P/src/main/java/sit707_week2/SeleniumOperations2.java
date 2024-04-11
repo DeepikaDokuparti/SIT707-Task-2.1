@@ -1,8 +1,9 @@
 package sit707_week2;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import java.io.File;
-import org.apache.commons.io.FileUtils;
+import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.OutputType;
@@ -29,7 +30,8 @@ public class SeleniumOperations2 {
 	}
 	
 	
-	public static void pinterest_signup_page(String url) {
+	public static void pinterest_signup_page(String url) throws IOException {
+		
 		// Step 1: Locate chrome driver folder in the local drive.
 		System.setProperty("webdriver.chrome.driver", "C:/Users/Deepika Dokuparti/Downloads/chromedriver-win64/chromedriver.exe");
 		
@@ -52,18 +54,29 @@ public class SeleniumOperations2 {
 		 */
 		
 		// Find first input field which is firstname
-		WebElement element = driver.findElement(By.id("firstname"));
-		System.out.println("Found element: " + element);
+		//WebElement element = driver.findElement(By.id("firstname"));
+		//System.out.println("Found element: " + element);
 		// Send first name
-		element.sendKeys("Deepika");
+		//element.sendKeys("Deepika");
 		
 		/*
 		 * Find following input fields and populate with values
 		 */
-		 WebElement usernameInput = driver.findElement(By.id("username"));
-		 WebElement passwordInput = driver.findElement(By.id("password"));
-		 usernameInput.sendKeys("url_Deepika");
-		 passwordInput.sendKeys("url_password");
+		 WebElement email = driver.findElement(By.id("email"));
+		 System.out.println("Found element: " + email);
+		 email.sendKeys("deepikamains@gmail.com");
+		 
+		 WebElement password = driver.findElement(By.id("password"));
+		 System.out.println("Found element: " + password);
+		 password.sendKeys("DeepikaD");
+		 
+		 WebElement birthdate = driver.findElement(By.id("birthdate"));
+		 System.out.println("Found element: " + birthdate);
+		 birthdate.sendKeys("24/09/2001");
+		 
+		// WebElement passwordInput = driver.findElement(By.id("password"));
+		 //usernameInput.sendKeys("url_Deepika");
+		 //passwordInput.sendKeys("url_password");
 		
 		
 		/*
@@ -77,12 +90,11 @@ public class SeleniumOperations2 {
 		 */
 		 TakesScreenshot screenshotDriver = (TakesScreenshot) driver;
          File screenshotFile = screenshotDriver.getScreenshotAs(OutputType.FILE);
+		 FileUtils.copyFile(screenshotFile, new File("task2_2P/Screenshot/Screenshot.png"));
 		 try {
-			 FileUtils.copyFile(screenshotFile, new File("screenshot.png"));
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
-		
+			FileUtils.copyFile(screenshotFile, new File
+			(".//Screenshot/Screenshot.png"));
+			 } catch (IOException e) {}	
 		
 		// Sleep a while
 		sleep(2);
